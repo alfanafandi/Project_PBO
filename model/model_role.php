@@ -19,9 +19,9 @@ class modelRole
 
     public function initializeDefaultRole()
     {
-        $this->addRole("Admin", "Administrator", 1, new Department("IT Department", "Third Floor"));
-        $this->addRole("User", "Customer/member", 1, new Department("Marketing Department", "First Floor"));
-        $this->addRole("Kasir", "Pembayaran", 0, new Department("Finance Department", "Second Floor"));
+        $this->addRole("Admin", "Administrator", 1, new Department("IT Department"));
+        $this->addRole("User", "Customer/member", 1, new Department("Marketing Department"));
+        $this->addRole("Kasir", "Pembayaran", 0, new Department("Finance Department"));
         $this->saveToSession();
     }
 

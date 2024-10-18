@@ -12,10 +12,9 @@ class Department
 
     public function getDepartmentInfo()
     {
-        return $this->namaDepartemen;
+        return "Department: " . $this->namaDepartemen;
     }
 }
-
 
 class Role
 {
@@ -23,7 +22,7 @@ class Role
     public $namaPeran;
     public $descPeran;
     public $statusPekerjaan;
-    public $departemen;
+    public $departemen; // aggregation
 
     public function __construct($idPeran, $namaPeran, $descPeran, $statusPekerjaan, Department $departemen)
     {
@@ -31,12 +30,16 @@ class Role
         $this->namaPeran = $namaPeran;
         $this->descPeran = $descPeran;
         $this->statusPekerjaan = $statusPekerjaan;
-        $this->departemen = $departemen;
+        $this->departemen = $departemen; // departemen dihubungkkan melalui aggregation
     }
 
     public function tampilkanInfoPeran()
     {
-
-        return $this->departemen->getDepartmentInfo();
+        echo "Role ID : " . $this->idPeran . "<br>";
+        echo "Role Name : " . $this->namaPeran . "<br>";
+        echo "Role Description : " . $this->descPeran . "<br>";
+        echo "Role Status : " . $this->statusPekerjaan . "<br>";
+        echo $this->departemen->getDepartmentInfo() . "<br>";
+        echo "<br>";
     }
 }
