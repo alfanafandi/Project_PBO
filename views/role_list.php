@@ -19,12 +19,12 @@
         <?php include 'includes/sidebar.php'; ?>
 
         <!-- Main Content -->
-        <div class="flex-1 p-8">
+        <div class="flex-1 p-8" text-gray-700 atau text-gray-900>
             <!-- Konten utama -->
             <div class="container mx-auto">
                 <!-- Tombol untuk menambah peran baru -->
                 <div class="mb-4">
-                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    <button class="bg-blue-500 hover:bg-blue-700 text-white transform hover:scale-110 transition duration-300 font-bold py-2 px-4 rounded">
                         <a href="views/role_input.php">Tambah Peran Baru</a>
                     </button>
                 </div>
@@ -32,7 +32,7 @@
                 <!-- Tabel Daftar Peran -->
                 <div class="bg-white shadow-md rounded my-6">
                     <table class="min-w-full bg-white grid-cols-1">
-                        <thead class="bg-gray-800 text-white">
+                        <thead class="bg-gradient-to-r from-blue-800 to-indigo-900 text-white">
                             <tr>
                                 <th class="w-1/12 py-3 px-4 uppercase font-semibold text-sm">ID Peran</th>
                                 <th class="w-1/4 py-3 px-4 uppercase font-semibold text-sm">Nama Peran</th>
@@ -50,11 +50,11 @@
                                     <td class="w-1/3 py-3 px-4"><?php echo htmlspecialchars($role->descPeran); ?></td>
                                     <td class="w-1/6 py-3 px-4"><?php echo htmlspecialchars($role->statusPekerjaan); ?></td>
                                     <td class="w-1/6 py-3 px-4">
-                                        <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded mr-2">
-                                            <a href="#">Ubah</a>
+                                        <button class="bg-green-500 hover:bg-green-700 text-white transform hover:scale-110 transition duration-300 font-bold py-2 px-4 rounded mr-2">
+                                            <a href="views/role_update.php" class="block">Ubah</a>
                                         </button>
-                                        <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded mr-2">
-                                            <a href="#">Hapus</a>
+                                        <button class="bg-red-500 hover:bg-red-700 text-white transform hover:scale-110 transition duration-300 font-bold py-2 px-4 rounded mr-2">
+                                            <a href="views/role_hapus.php">Hapus</a>
                                         </button>
                                     </td>
                                 </tr>

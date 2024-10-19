@@ -19,8 +19,8 @@ class modelRole
 
     public function initializeDefaultRole()
     {
-        $this->addRole("Admin", "Administrator", 1, new Department("IT Department"));
-        $this->addRole("User", "Customer/member", 1, new Department("Marketing Department"));
+        $this->addRole("Proggramer", "Membuat Program", 1, new Department("IT Department"));
+        $this->addRole("Customer Servis", "Customer/member", 1, new Department("Marketing Department"));
         $this->addRole("Kasir", "Pembayaran", 0, new Department("Finance Department"));
         $this->saveToSession();
     }
@@ -90,3 +90,5 @@ class modelRole
         return null;
     }
 }
+
+include 'views/role_list.php';
