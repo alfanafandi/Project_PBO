@@ -43,18 +43,20 @@
                         </thead>
                         <tbody class="text-gray-700">
                             <!-- Baris Data Dinamis -->
-                            <?php foreach ($obj_role as $role) : ?>
+                            <?php foreach ($roles as $role) : ?>
                                 <tr class="text-center">
                                     <td class="py-3 px-4 text-blue-600"><?php echo htmlspecialchars($role->idPeran); ?></td>
                                     <td class="w-1/4 py-3 px-4"><?php echo htmlspecialchars($role->namaPeran); ?></td>
                                     <td class="w-1/3 py-3 px-4"><?php echo htmlspecialchars($role->descPeran); ?></td>
                                     <td class="w-1/6 py-3 px-4"><?php echo htmlspecialchars($role->statusPekerjaan); ?></td>
                                     <td class="w-1/6 py-3 px-4">
+                                        <!-- Tombol Update -->
                                         <button class="bg-green-500 hover:bg-green-700 text-white transform hover:scale-110 transition duration-300 font-bold py-2 px-4 rounded mr-2">
-                                            <a href="views/role_update.php" class="block">Ubah</a>
+                                            <a href="index.php?modul=role&fitur=edit&id=<?php echo $role->idPeran; ?>" class="block">Ubah</a>
                                         </button>
-                                        <button class="bg-red-500 hover:bg-red-700 text-white transform hover:scale-110 transition duration-300 font-bold py-2 px-4 rounded mr-2">
-                                            <a href="views/role_hapus.php">Hapus</a>
+                                        <!-- Tombol Delete -->
+                                        <button class="bg-red-500 hover:bg-red-700 text-white transform hover:scale-110 transition duration-300 font-bold py-2 px-4 rounded mr-2" onclick="return confirm('Apakah Anda yakin ingin menghapus peran ini?');">
+                                            <a href="index.php?modul=role&fitur=delete&id=<?php echo $role->idPeran; ?>" class="block">Hapus</a>
                                         </button>
                                     </td>
                                 </tr>

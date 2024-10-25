@@ -3,43 +3,42 @@ session_start();
 
 require_once 'model/model_role.php';
 
-$obj_role = new modelRole();
-$obj_role->addRole("Admin", "Untuk Admin", 0, new Department("admin"));
-$obj_role->addRole("Kasir", "Untuk Kasir", 1, new Department("Keuangan"));
-$obj_role->addRole("Customer", "Untuk Customer", 1, new Department("Layanan Pelanggan"));
+$obj_role = new ModelRole();
+$obj_role->addRole("Admin", "Untuk Admin", 0);
+$obj_role->addRole("Kasir", "Untuk Kasir", 1);
+$obj_role->addRole("Customer", "Untuk Customer", 1);
 
 // testing 
+echo "<br>" . "==TESTING DATA ROLE==" . "<br>";
 foreach ($obj_role->getAllRoles() as $role) {
     echo "role ID : " . $role->idPeran . "<br>";
     echo "role Name : " . $role->namaPeran . "<br>";
     echo "role Description : " . $role->descPeran . "<br>";
     echo "role Status : " . $role->statusPekerjaan . "<br>";
-    echo "role Department : ";
-    echo $role->tampilkanInfoPeran() . "<br><br>";
+    echo "<br><br>";
 }
 
 // update role
-echo "<br>" . "==update data role==" . "<br>";
-$obj_role->updateRole(1, "update role", "role terupdate", 1, new Department("admin"));
+echo "<br>" . "==UPDATE DATA ROLE==" . "<br>";
+$obj_role->updateRole(1, "update role", "role terupdate", 1);
 foreach ($obj_role->getAllRoles() as $role) {
     echo "role ID : " . $role->idPeran . "<br>";
     echo "role Name : " . $role->namaPeran . "<br>";
     echo "role Description : " . $role->descPeran . "<br>";
     echo "role Status : " . $role->statusPekerjaan . "<br>";
-    echo "role Department : ";
-    echo $role->tampilkanInfoPeran() . "<br><br>";
+    echo "<br><br>";
 }
 
 // Menghapus data role
-echo "<br>" .  "==delete data role==" . "<br>";
+echo "<br>" .  "==DELETE DATA ROLE==" . "<br>";
 $obj_role->deleteRole(1);
+$obj_role->deleteRole(2);
 foreach ($obj_role->getAllRoles() as $role) {
     echo "role ID : " . $role->idPeran . "<br>";
     echo "role Name : " . $role->namaPeran . "<br>";
     echo "role Description : " . $role->descPeran . "<br>";
     echo "role Status : " . $role->statusPekerjaan . "<br>";
-    echo "role Department : ";
-    echo $role->tampilkanInfoPeran() . "<br><br>";
+    echo "<br><br>";
 }
 
 session_destroy();

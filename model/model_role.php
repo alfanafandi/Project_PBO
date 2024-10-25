@@ -1,7 +1,7 @@
 <?php
 require_once 'domain_object/node_role.php';
 
-class modelRole
+class ModelRole
 {
     private $roles = [];
     private $next_id = 1;
@@ -19,15 +19,15 @@ class modelRole
 
     public function initializeDefaultRole()
     {
-        $this->addRole("Proggramer", "Membuat Program", 1, new Department("IT Department"));
-        $this->addRole("Customer Servis", "Customer/member", 1, new Department("Marketing Department"));
-        $this->addRole("Kasir", "Pembayaran", 0, new Department("Finance Department"));
+        $this->addRole("Proggramer", "Membuat Program", 1);
+        $this->addRole("Customer Servis", "Customer/member", 1);
+        $this->addRole("Kasir", "Pembayaran", 0);
         $this->saveToSession();
     }
 
-    public function addRole($namaPeran, $descPeran, $statusPekerjaan, Department $departemen)
+    public function addRole($namaPeran, $descPeran, $statusPekerjaan)
     {
-        $peran = new \Role($this->next_id++, $namaPeran, $descPeran, $statusPekerjaan, $departemen);
+        $peran = new \Role($this->next_id++, $namaPeran, $descPeran, $statusPekerjaan);
         $this->roles[] = $peran;
         $this->saveToSession();
     }
@@ -52,20 +52,20 @@ class modelRole
         return null;
     }
 
-    public function updateRole($role_id, $namaPeran, $descPeran, $statusPekerjaan, Department $departemen)
+    public function updateRole($role_id, $namaPeran, $descPeran, $statusPekerjaan)
     {
         foreach ($this->roles as $role) {
             if ($role->idPeran == $role_id) {
                 $role->namaPeran = $namaPeran;
                 $role->descPeran = $descPeran;
                 $role->statusPekerjaan = $statusPekerjaan;
-                $role->departemen = $departemen;
                 $this->saveToSession();
                 return true;
             }
         }
         return false;
     }
+
 
     public function deleteRole($role_id)
     {
@@ -80,6 +80,7 @@ class modelRole
         return false;
     }
 
+
     public function getRoleByName($namaPeran)
     {
         foreach ($this->roles as $role) {
@@ -90,5 +91,3 @@ class modelRole
         return null;
     }
 }
-
-include 'views/role_list.php';
