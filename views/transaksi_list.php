@@ -49,8 +49,8 @@
                                 foreach ($transaksis as $transaksi) { ?>
                                     <tr class="text-center">
                                         <td class="py-3 px-4 text-blue-600"><?php echo htmlspecialchars($transaksi->idTransaksi); ?></td>
-                                        <td class="w-1/4 py-3 px-4"><?php echo htmlspecialchars($transaksi->customer->name); ?></td>
-                                        <td class="w-1/4 py-3 px-4"><?php echo htmlspecialchars($transaksi->kasir->name); ?></td>
+                                        <td class="w-1/4 py-3 px-4"><?php echo htmlspecialchars($transaksi->customer->user_nama); ?></td>
+                                        <td class="w-1/4 py-3 px-4"><?php echo htmlspecialchars($transaksi->kasir->user_nama); ?></td>
                                         <td class="w-1/6 py-3 px-4"><?php echo htmlspecialchars($transaksi->total); ?></td>
                                         <td class="w-1/6 py-3 px-4">
                                             <button
@@ -87,7 +87,7 @@
                                 <tbody class="text-gray-700">
                                     <?php foreach ($transaksi->barangs as $index => $barang) { ?>
                                         <tr class="text-center">
-                                            <td class="py-3 px-4"><?php echo htmlspecialchars($barang->nameBarang); ?></td>
+                                            <td class="py-3 px-4"><?php echo htmlspecialchars($barang->barang_nama); ?></td>
                                             <td class="py-3 px-4"><?php echo htmlspecialchars($transaksi->jumlahs[$index]); ?></td>
                                         </tr>
                                     <?php } ?>

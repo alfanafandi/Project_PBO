@@ -2,7 +2,9 @@
     <div class="container mx-auto flex justify-between items-center">
         <!-- Logo atau Title -->
         <div class="text-white font-extrabold text-2xl tracking-widest hover:scale-105 transition duration-300">
-            Data Manager
+            <a href="/index.php?modul=dashboard">
+                Data Manager
+            </a>
         </div>
 
         <!-- User Info dan Logout Button -->

@@ -1,5 +1,5 @@
 <?php
-require_once 'domain_object/node_role.php';
+require_once __DIR__ . '/../domain_object/node_role.php';
 
 class ModelRole
 {
@@ -19,9 +19,9 @@ class ModelRole
 
     public function initializeDefaultRole()
     {
-        $this->addRole("Proggramer", "Membuat Program", 1);
-        $this->addRole("Customer Servis", "Customer/member", 1);
-        $this->addRole("Kasir", "Pembayaran", 0);
+        $this->addRole("Admin", "Sebagai Admin", 1);
+        $this->addRole("Kasir", "Sebagai Kasir", 1);
+        $this->addRole("Customer", "Sebagai Customer", 1);
         $this->saveToSession();
     }
 

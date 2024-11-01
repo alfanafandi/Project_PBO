@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Transaksi Baru</title>
-<!--    <link href="./Views/output.css" rel="stylesheet">-->
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
+
 <body class="bg-gray-100 font-sans leading-normal tracking-normal">
 
     <!-- Navbar -->
@@ -21,25 +22,36 @@
         <div class="flex-1 p-8">
             <!-- Form Transaksi -->
             <h2 class="text-2xl font-bold mb-4">Transaksi Baru</h2>
-            <form action="MainEntryPoint.php?modul=transaksi&fitur=add" method="POST" id="transaksiForm">
+            <form action="index.php?modul=transaksi&fitur=add" method="POST" id="transaksiForm">
+
+                <!-- Dropdown Customer -->
                 <div class="mb-4">
                     <label for="customer" class="block text-gray-700">Customer</label>
                     <select id="customer" name="customer" class="mt-1 p-2 border border-gray-300 rounded w-1/3" required>
                         <option value="" disabled selected>Pilih Customer</option>
-                        <?php
-                        // Ambil data customer dari database atau array
-                        // Contoh data customer
-//                        $customers = ['John Doe', 'Jane Smith', 'Robert Brown'];
-//                        print_r($customers);
-                        if (!empty($customers)) {
+                        <?php if (!empty($customers)) {
                             foreach ($customers as $customer) {
-                                echo "<option value='$customer->name'>$customer->name</option>";
+                                echo "<option value='{$customer->user_id}'>{$customer->user_nama}</option>";
                             }
-                        }
-                        ?>
+                        } ?>
                     </select>
                 </div>
 
+                <!-- Dropdown Kasir -->
+                <div class="mb-4">
+                    <label for="kasir" class="block text-gray-700">Kasir</label>
+                    <select id="kasir" name="kasir" class="mt-1 p-2 border border-gray-300 rounded w-1/3" required>
+                        <option value="" disabled selected>Pilih Kasir</option>
+                        <?php if (!empty($kasirs)) {
+                            foreach ($kasirs as $kasir) {
+                                echo "<option value='{$kasir->user_id}'>{$kasir->user_nama}</option>";
+                            }
+                        } ?>
+                    </select>
+                </div>
+
+
+                <!-- Detail Barang -->
                 <h3 class="text-xl font-semibold mb-2">Detail Barang</h3>
                 <div id="barangContainer">
                     <!-- Template Barang -->
@@ -49,16 +61,9 @@
                                 <label for="barang[]" class="block text-gray-700">Barang</label>
                                 <select name="barang[]" class="mt-1 p-2 border border-gray-300 rounded w-full" required>
                                     <option value="" disabled selected>Pilih Barang</option>
-                                    <?php
-//                                    $barangList = [
-//                                        ['id' => 1, 'name' => 'Barang A', 'harga' => 50000],
-//                                        ['id' => 2, 'name' => 'Barang B', 'harga' => 75000],
-//                                        ['id' => 3, 'name' => 'Barang C', 'harga' => 120000],
-//                                    ];
-                                    foreach ($barangs as $barang) {
-                                        echo "<option value='{$barang->idBarang}'>{$barang->nameBarang} - Rp{$barang->hargaBarang}</option>";
-                                    }
-                                    ?>
+                                    <?php foreach ($barangs as $barang) {
+                                        echo "<option value='{$barang->barang_id}'>{$barang->barang_nama} - Rp{$barang->barang_harga}</option>";
+                                    } ?>
                                 </select>
                             </div>
                             <div>
@@ -72,6 +77,7 @@
                     </div>
                 </div>
                 <button type="button" id="addBarangBtn" class="bg-blue-500 text-white p-2 rounded mt-2">Tambah Barang</button>
+
                 <div class="mt-6">
                     <button type="submit" class="bg-green-500 text-white p-2 rounded">Simpan Transaksi</button>
                 </div>
@@ -100,4 +106,5 @@
         });
     </script>
 </body>
+
 </html>
