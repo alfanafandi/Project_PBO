@@ -8,7 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-gray-100 font-sans leading-normal tracking-normal">
+<body class="bg-gradient-to-r from-gray-100 via-gray-200 to-gray-300 font-sans leading-normal tracking-normal">
 
     <!-- Navbar -->
     <?php include 'includes/navbar.php'; ?>
@@ -24,44 +24,46 @@
             <div class="container mx-auto">
                 <!-- Button to Insert New Role -->
                 <div class="mb-4">
-                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded-md transition duration-200 mb-4">
                         <a href="views/barang_input.php">Insert New Barang</a>
                     </button>
                 </div>
 
                 <!-- Roles Table -->
-                <div class="bg-white shadow-md rounded my-6">
-                    <table class="min-w-full bg-white grid-cols-1">
-                        <thead class="bg-gray-800 text-white">
-
+                <div class="bg-white shadow-md rounded my-6 overflow-hidden">
+                    <table class="min-w-full bg-white">
+                        <thead class="bg-gradient-to-r from-gray-800 to-gray-700 text-white">
                             <tr>
-                                <th class="w-1/12 py-3 px-4 uppercase font-semibold text-sm">Barang ID</th>
-                                <th class="w-1/4 py-3 px-4 uppercase font-semibold text-sm">Barang Name</th>
-                                <th class="w-1/3 py-3 px-4 uppercase font-semibold text-sm">Barang Stok</th>
-                                <th class="w-1/6 py-3 px-4 uppercase font-semibold text-sm">Barang Harga</th>
-                                <th class="w-1/6 py-3 px-4 uppercase font-semibold text-sm">Actions</th>
+                                <th class="py-3 px-4 uppercase font-semibold text-sm">Barang ID</th>
+                                <th class="py-3 px-4 uppercase font-semibold text-sm">Barang Name</th>
+                                <th class="py-3 px-4 uppercase font-semibold text-sm">Barang Stok</th>
+                                <th class="py-3 px-4 uppercase font-semibold text-sm">Barang Harga</th>
+                                <th class="py-3 px-4 uppercase font-semibold text-sm">Actions</th>
                             </tr>
-
                         </thead>
                         <tbody class="text-gray-700">
-                            <!-- Static Data Rows -->
-                            <?php foreach ($barangs as $barang) { ?>
-                                <tr class="text-center">
-                                    <td class="py-3 px-4 text-blue-600"><?php echo htmlspecialchars($barang->barang_id) ?></td>
-                                    <td class="w-1/4 py-3 px-4"><?php echo htmlspecialchars($barang->barang_nama) ?></td>
-                                    <td class="w-1/3 py-3 px-4"><?php echo htmlspecialchars($barang->barang_stok) ?></td>
-                                    <td class="w-1/3 py-3 px-4"><?php echo htmlspecialchars($barang->barang_harga) ?></td>
-                                    <td class="w-1/6 py-3 px-4">
-                                        <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded mr-2">
-                                            <a href="index.php?modul=barang&fitur=edit&id=<?php echo $barang->barang_id; ?>" class="block">Update</a>
-                                        </button>
-                                        <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded mr-2">
-                                            <a href="index.php?modul=barang&fitur=delete&id=<?php echo $barang->barang_id; ?>" class="block" onclick="return confirm ('apakah anda yakin ingin menghapus barang ini?');">Delete</a>
-                                        </button>
-                                    </td>
-                                <?php } ?>
-
+                            <?php if (!empty($barangs)) {
+                                foreach ($barangs as $barang) { ?>
+                                    <tr class="text-center border-b border-gray-300 transition duration-200 ease-in-out hover:bg-gray-200">
+                                        <td class="py-3 px-4 text-blue-600"><?php echo htmlspecialchars($barang->barang_id); ?></td>
+                                        <td class="py-3 px-4"><?php echo htmlspecialchars($barang->barang_nama); ?></td>
+                                        <td class="py-3 px-4"><?php echo htmlspecialchars($barang->barang_stok); ?></td>
+                                        <td class="py-3 px-4"><?php echo htmlspecialchars($barang->barang_harga); ?></td>
+                                        <td class="py-3 px-4">
+                                            <button class="bg-green-200 hover:bg-green-300 text-green-700 font-semibold py-1 px-3 rounded-md transition duration-200">
+                                                <a href="index.php?modul=barang&fitur=edit&id=<?php echo $barang->barang_id; ?>" class="block">Update</a>
+                                            </button>
+                                            <button class="bg-red-200 hover:bg-red-300 text-red-700 font-semibold py-1 px-3 rounded-md transition duration-200">
+                                                <a href="index.php?modul=barang&fitur=delete&id=<?php echo $barang->barang_id; ?>" class="block" onclick="return confirm('Apakah anda yakin ingin menghapus barang ini?');">Delete</a>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                <?php }
+                            } else { ?>
+                                <tr>
+                                    <td colspan="5" class="py-3 px-4 text-center">Tidak ada data barang tersedia.</td>
                                 </tr>
+                            <?php } ?>
                         </tbody>
                     </table>
                 </div>
@@ -70,5 +72,7 @@
     </div>
 
 </body>
+
+
 
 </html>

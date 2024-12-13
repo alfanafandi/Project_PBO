@@ -1,3 +1,8 @@
+<?php
+require_once '../model/model_role.php';
+require_once '../model/user_model.php';
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,7 +13,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-gray-100 font-sans leading-normal tracking-normal">
+<body class="bg-gradient-to-r from-gray-100 via-gray-200 to-gray-300 font-sans leading-normal tracking-normal">
 
     <!-- Navbar -->
     <?php include 'includes/navbar.php'; ?>
@@ -33,13 +38,13 @@
                     <!-- Stok Barang -->
                     <div class="mb-4">
                         <label for="barang_stok" class="block text-gray-700 text-sm font-bold mb-2">Stok Barang:</label>
-                        <textarea id="barang_stok" name="barang_stok" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Masukkan Stok Barang" rows="3" required></textarea>
+                        <input id="barang_stok" name="barang_stok" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Masukkan Stok Barang" required></input>
                     </div>
 
                     <!-- Barang Harga -->
                     <div class="mb-4">
                         <label for="barang_harga" class="block text-gray-700 text-sm font-bold mb-2">Harga Barang:</label>
-                        <textarea id="barang_harga" name="barang_harga" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Masukkan Harga Barang" rows="3" required></textarea>
+                        <input id="barang_harga" name="barang_harga" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Masukkan Harga Barang" required></input>
                     </div>
 
                     <!-- Submit Button -->

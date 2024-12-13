@@ -20,10 +20,11 @@ class ModelUser
 
     public function initializeDefaultUser()
     {
-        $this->addUser("Alfan", "alfan123", "password1", 1);
-        $this->addUser("Afandi", "afandi123", "password2", 2);
-        $this->addUser("Pratama", "pratama123", "password3", 3);
+        $this->addUser("Alfan", "alfan123", password_hash("password1", PASSWORD_DEFAULT), 1);
+        $this->addUser("Afandi", "afandi123", password_hash("password2", PASSWORD_DEFAULT), 2);
+        $this->addUser("Pratama", "pratama123", password_hash("password3", PASSWORD_DEFAULT), 3);
     }
+
 
     public function addUser($user_nama, $user_username, $user_password, $role_id)
     {
@@ -57,19 +58,23 @@ class ModelUser
         return null;
     }
 
-    public function updateUser($user_id, $user_nama, $user_username, $user_password)
+    public function updateUser($user_id, $user_nama, $user_username, $user_password, $user_role_id)
     {
         foreach ($this->users as $user) {
             if ($user->user_id == $user_id) {
                 $user->user_nama = $user_nama;
                 $user->user_username = $user_username;
                 $user->user_password = $user_password;
+                $role = $this->modelRole->getRoleById($user_role_id);
+                $user->role = $role;
                 $this->saveToSession();
                 return true;
             }
         }
         return false;
     }
+
+
 
     public function deleteUser($user_id)
     {
@@ -84,22 +89,37 @@ class ModelUser
         return false;
     }
 
+    public function getUserByUsername($user_username)
+    {
+        foreach ($this->users as $user) {
+            if ($user->user_username == $user_username) {
+                return $user;
+            }
+        }
+        return null;
+    }
+
+
     public function getUserByRole($role)
     {
         $result = [];
-        foreach ($this->users as $user) {
-            if (is_object($role) && isset($role->namaPeran)) {
-                if ($user->role->namaPeran == $role->namaPeran) {
-                    $result[] = $user;
-                }
-            } elseif (is_string($role)) {
+        if (is_string($role)) {
+            foreach ($this->users as $user) {
                 if ($user->role->namaPeran == $role) {
                     $result[] = $user;
                 }
             }
+        } elseif (is_object($role) && isset($role->namaPeran)) {
+            foreach ($this->users as $user) {
+                if ($user->role->namaPeran == $role->namaPeran) {
+                    $result[] = $user;
+                }
+            }
         }
+
         return $result;
     }
+
 
 
     public function getUserByName($user_nama)

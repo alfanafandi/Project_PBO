@@ -7,6 +7,8 @@ $user_id = $_GET['id'];
 $obj_modelRole = new ModelRole();
 $obj_modelUser = new modelUser($obj_modelRole);
 $user = $obj_modelUser->getUserById($user_id);
+$listRoles = $obj_modelRole->getAllRoles(); // Pastikan Anda memanggil fungsi ini
+
 ?>
 
 <head>
@@ -16,7 +18,7 @@ $user = $obj_modelUser->getUserById($user_id);
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-gray-100 font-sans leading-normal tracking-normal">
+<body class="bg-gradient-to-r from-gray-100 via-gray-200 to-gray-300 font-sans leading-normal tracking-normal">
 
     <!-- Navbar -->
     <?php include 'includes/navbar.php'; ?>
@@ -40,19 +42,37 @@ $user = $obj_modelUser->getUserById($user_id);
                             value="<?php echo htmlspecialchars($user->user_nama); ?>" required>
                     </div>
 
-                    <!-- User username -->
+                    <!-- User Username -->
                     <div class="mb-4">
                         <label for="user_username" class="block text-gray-700 text-sm font-bold mb-2">Username:</label>
                         <input type="text" id="user_username" name="user_username" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             value="<?php echo htmlspecialchars($user->user_username); ?>" required>
                     </div>
 
+                    <!-- Password -->
+                    <div class="mb-4">
+                        <label for="user_password" class="block text-gray-700 text-sm font-bold mb-2">Password:</label>
+                        <input type="password" id="user_password" name="user_password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            placeholder="password baru (kosongkan jika tidak ingin mengubah)">
+                    </div>
+
+
                     <!-- Role User -->
                     <div class="mb-4">
-                        <label for="user_role" class="block text-gray-700 text-sm font-bold mb-2">Role:</label>
-                        <input type="text" id="user_role" name="user_role" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                            value="<?php echo htmlspecialchars($user->role->namaPeran); ?>" required>
+                        <label for="user_role_id" class="block text-gray-700 text-sm font-bold mb-2">Role:</label>
+                        <select id="user_role_id" name="user_role_id" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                            <option value="">Pilih Role</option>
+                            <?php foreach ($listRoles as $role) {
+                                if ($role->statusPekerjaan == 1) {
+                            ?>
+                                    <option value="<?php echo htmlspecialchars($role->idPeran); ?>">
+                                        <?php echo htmlspecialchars($role->namaPeran); ?>
+                                    </option>
+                            <?php }
+                            } ?>
+                        </select>
                     </div>
+
 
                     <!-- Submit Button -->
                     <div class="flex items-center justify-between">

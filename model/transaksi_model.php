@@ -29,7 +29,7 @@ class ModelTransaksi
 
     public function initializeDefaultTransaksi()
     {
-        $customer = $this->modelUser->getUserByName("Alfan");
+        $customer = $this->modelUser->getUserByName("Pratama");
         $kasirRole = $this->modelRole->getRoleByName("Kasir");
 
         if (!$kasirRole) {
@@ -50,20 +50,28 @@ class ModelTransaksi
             throw new Exception("Barang tidak ditemukan.");
         }
 
-        $this->addTransaksi($customer, $kasir, 50000, [$barang1, $barang2], [2, 3]);
+
+        $tgl_transaksi = date('d-m-Y');
+
+        $this->addTransaksi($tgl_transaksi, $customer, $kasir, 50000, [$barang1, $barang2], [2, 3]);
     }
 
 
-    public function addTransaksi($customer, $kasir, $total, $barangs, $jumlahs)
+
+    public function addTransaksi($tgl_transaksi, $customer, $kasir, $total, $barangs, $jumlahs)
     {
         if ($kasir->role->namaPeran == "Kasir") {
-            $transaksi = new Transaksi($this->nextId++, $customer, $kasir, $total, $barangs, $jumlahs);
+            $dateTime = DateTime::createFromFormat('d-m-Y', $tgl_transaksi);
+
+
+            $transaksi = new Transaksi($this->nextId++, $dateTime->format('Y-m-d'), $customer, $kasir, $total, $barangs, $jumlahs);
             $this->transaksis[] = $transaksi;
             $this->saveToSession();
         } else {
             throw new Exception("User tidak memiliki peran Kasir");
         }
     }
+
 
     private function saveToSession()
     {

@@ -19,7 +19,7 @@ $role = $objectRole->getRoleById($idPeran);
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-gray-100 font-sans leading-normal tracking-normal">
+<body class="bg-gradient-to-r from-gray-100 via-gray-200 to-gray-300 font-sans leading-normal tracking-normal">
 
     <!-- Navbar -->
     <?php include 'includes/navbar.php'; ?>

@@ -18,7 +18,7 @@ $listRoles = $modelRole->getAllRoles();
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-gray-100 font-sans leading-normal tracking-normal">
+<body class="bg-gradient-to-r from-gray-100 via-gray-200 to-gray-300 font-sans leading-normal tracking-normal">
 
     <!-- Navbar -->
     <?php include 'includes/navbar.php'; ?>
@@ -54,13 +54,17 @@ $listRoles = $modelRole->getAllRoles();
                         <label for="user_role_id" class="block text-gray-700 text-sm font-bold mb-2">Role Name:</label>
                         <select id="user_role_id" name="user_role_id" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
                             <option value="">Pilih Role</option>
-                            <?php foreach ($listRoles as $role) { ?>
-                                <option value="<?php echo htmlspecialchars($role->idPeran); ?>">
-                                    <?php echo htmlspecialchars($role->namaPeran); ?>
-                                </option>
-                            <?php } ?>
+                            <?php foreach ($listRoles as $role) {
+                                if ($role->statusPekerjaan == 1) {
+                            ?>
+                                    <option value="<?php echo htmlspecialchars($role->idPeran); ?>">
+                                        <?php echo htmlspecialchars($role->namaPeran); ?>
+                                    </option>
+                            <?php }
+                            } ?>
                         </select>
                     </div>
+
                     <!-- Submit Button -->
                     <div class="flex items-center justify-between">
                         <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
